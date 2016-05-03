@@ -16,6 +16,16 @@ public:
 	double Y(void) const;
 	double Z(void) const;
 
+	// Mutator
+	void X(double x);
+	void Y(double y);
+	void Z(double z);
+
+	// norm stuff
+	double length(void) const;
+	double length_squared(void) const;
+	void normalize(void);
+
 
 protected:
 	double x;

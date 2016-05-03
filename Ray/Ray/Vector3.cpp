@@ -1,4 +1,6 @@
+#include <cmath>
 #include "Vector3.h"
+#include "constants.h"
 
 
 Vector3::Vector3(double x, double y, double z)
@@ -38,4 +40,43 @@ double Vector3::Y(void) const
 double Vector3::Z(void) const
 {
 	return this->z;
+}
+
+void Vector3::X(double x)
+{
+	this->x = x;
+}
+
+void Vector3::Y(double y)
+{
+	this->y = y;
+}
+
+void Vector3::Z(double z)
+{
+	this->z = z;
+}
+
+double Vector3::length(void) const
+{
+	double length = x*x + y*y + z*z;
+	return std::sqrt(length);
+}
+
+double Vector3::length_squared(void) const
+{
+	return x*x + y*y + z*z;
+}
+
+void Vector3::normalize(void)
+{
+	double length = x*x + y*y + z*z;
+	if (length <= epsilon)
+		return;
+
+	length = std::sqrt(length);
+
+	x /= length;
+	y /= length;
+	z /= length;
 }
