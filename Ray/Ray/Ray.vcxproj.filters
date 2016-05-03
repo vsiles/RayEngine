@@ -16,9 +16,18 @@
     <Filter Include="Fichiers sources\math">
       <UniqueIdentifier>{b4961b6e-e6f5-4e45-9003-ec59a79ad671}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\primitives">
+      <UniqueIdentifier>{cbf2a2e7-9ff3-4712-a3f3-60455afd3acb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -28,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
       <Filter>Fichiers sources\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Fichiers sources\primitives</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
