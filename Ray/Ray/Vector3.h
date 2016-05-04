@@ -6,10 +6,20 @@ class Vector3
 {
 public:
 	Vector3(double x=0.0, double y=0.0, double z=0.0);
+	Vector3(const Vector3 &ref);
 	virtual ~Vector3();
 
 	// Addition of Vector3 field by field
-	Vector3 operator+(Vector3 & other);
+	Vector3 operator+(const Vector3 &other) const;
+
+	// Subtraction of Vector3 field by field
+	Vector3 operator-(const Vector3 &other) const;
+
+	// Scalar product
+	double operator*(const Vector3 &other) const;
+
+	// Multiplication by a scalar
+	void scale(double scalar);
 
 	// Accessor
 	double X(void) const;
@@ -25,7 +35,6 @@ public:
 	double length(void) const;
 	double length_squared(void) const;
 	void normalize(void);
-
 
 protected:
 	double x;

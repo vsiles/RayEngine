@@ -10,15 +10,43 @@ Vector3::Vector3(double x, double y, double z)
 	this->z = z;
 }
 
+Vector3::Vector3(const Vector3 &ref)
+{
+	this->x = ref.x;
+	this->y = ref.y;
+	this->z = ref.z;
+}
+
+
 Vector3::~Vector3()
 {
 }
 
 
 // Addition of Vector3 field by field
-Vector3 Vector3::operator+(Vector3 & other)
+Vector3 Vector3::operator+(const Vector3 & other) const
 {
 	return Vector3(this->x + other.x, this->y + other.y, this->z + other.z);
+}
+
+// Subtraction of Vector3 field by field
+Vector3 Vector3::operator-(const Vector3 &other) const
+{
+	return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
+}
+
+// Scalar product
+double Vector3::operator*(const Vector3 &other) const
+{
+	return (this->x * other.x, this->y * other.y, this->z * other.z);
+}
+
+// Multiplication by a scalar
+void Vector3::scale(double scalar)
+{
+	this->x *= scalar;
+	this->y *= scalar;
+	this->z *= scalar;
 }
 
 // 'Simple function to 'cout' a Vector3
