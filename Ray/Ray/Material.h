@@ -21,7 +21,7 @@ public:
 	
 protected:
 	Color color;
-	float refl;
-	float diff;
+	double refl;
+	double diff;
 };
 
