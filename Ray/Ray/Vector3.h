@@ -33,10 +33,18 @@ public:
 	double Y(void) const;
 	double Z(void) const;
 
+	double R(void) const;
+	double G(void) const;
+	double B(void) const;
+
 	// Mutator
 	void X(double x);
 	void Y(double y);
 	void Z(double z);
+
+	void R(double r);
+	void G(double g);
+	void B(double b);
 
 	// norm stuff
 	double length(void) const;

@@ -123,6 +123,37 @@ void Vector3::Z(double z)
 	this->z = z;
 }
 
+double Vector3::R(void) const
+{
+	return this->x;
+}
+
+double Vector3::G(void) const
+{
+	return this->y;
+}
+
+double Vector3::B(void) const
+{
+	return this->z;
+}
+
+void Vector3::R(double x)
+{
+	this->x = x;
+}
+
+void Vector3::G(double y)
+{
+	this->y = y;
+}
+
+void Vector3::B(double z)
+{
+	this->z = z;
+}
+
+
 double Vector3::length(void) const
 {
 	double length = x*x + y*y + z*z;
