@@ -11,15 +11,22 @@ public:
 
 	// Addition of Vector3 field by field
 	Vector3 operator+(const Vector3 &other) const;
+	void operator+=(const Vector3 &other);
 
 	// Subtraction of Vector3 field by field
 	Vector3 operator-(const Vector3 &other) const;
+	void operator-=(const Vector3 &other);
 
 	// Scalar product
 	double operator*(const Vector3 &other) const;
 
+	// Cross product
+	Vector3 operator^(const Vector3 &other) const;
+	void operator^(const Vector3 &other);
+
 	// Multiplication by a scalar
-	void scale(double scalar);
+	Vector3 scale(double scalar) const;
+	void operator*=(double scalar);
 
 	// Accessor
 	double X(void) const;
