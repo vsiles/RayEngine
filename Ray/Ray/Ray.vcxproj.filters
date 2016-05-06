@@ -36,6 +36,9 @@
     <ClInclude Include="Material.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Fichiers sources\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
