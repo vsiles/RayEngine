@@ -4,6 +4,7 @@
 #include "Material.h"
 #include "Ray.h"
 #include "Vector3.h"
+#include "constants.h"
 
 class Primitive
 {
@@ -23,7 +24,7 @@ public:
 
 	//virtual int GetType() = 0;
 
-	virtual int Intersect(Ray &ray, double &dist) = 0;
+	virtual hitStatus Intersect(const Ray &ray, double &dist) = 0;
 	virtual Vector3 getNormal(Vector3 &pos) const = 0;
 	virtual Color getColor(void) const;
 	virtual void setLight(bool light);
