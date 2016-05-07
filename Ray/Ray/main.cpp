@@ -1,8 +1,22 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Vector3.h"
+#include "Scene.h"
 
 using namespace std;
+
+static Scene scene;
+
+static void dummy(std::vector<std::unique_ptr<Primitive>> &prims, size_t n)
+{
+	unique_ptr<Primitive> curr;
+	unsigned int i;
+
+	for (i = 0; i < n; i++) {
+		curr = std::move(scene.getPrimitive(i));
+		cout << "Current primitive is " << curr->getName() << endl;
+		prims[i] = std::move(curr);
+	}
+}
 
 #if 1
 int main(int argc, char **argv)
@@ -11,14 +25,14 @@ int main(int argc, char **argv)
 	(void)argv; /* UNUSED */
 
 	cout << "HelloWorld !" << endl;
+	
+	scene.initScene();
 
-	Vector3 v;
+	dummy(scene.primitives, scene.getPrimitivesNumber());
 
-	cout << "First vector: " << v << endl;
+	dummy(scene.primitives, scene.getPrimitivesNumber());
 
-	Vector3 w(1.0, 2.0, 3.0);
-
-	cout << "Second vector: " << w + v << endl;
+	cout << "Good Bye World !" << endl;
 
 	return 0;
 }

@@ -17,6 +17,6 @@ public:
 	// Returns a reference to the primitive at index [idx]. Raise an [out_of_range] exception if [idx] is too high
 	std::unique_ptr<Primitive> &getPrimitive(unsigned int idx);
 
-protected:
+//protected:
 	std::vector<std::unique_ptr<Primitive>> primitives;
 };

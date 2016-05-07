@@ -47,6 +47,7 @@ void Scene::initScene()
 
 	// light source 1
 	Sphere *light1 = new Sphere(Vector3(0.0, 5.0, 5.0), 0.1);
+	light1->setName("light1");
 	light1->setLight(true);
 	light1->getMaterial().setColor(Color(0.6, 0.6, 0.6));
 	std::unique_ptr<Primitive> plight1(light1);
@@ -54,6 +55,7 @@ void Scene::initScene()
 
 	// light source 2
 	Sphere *light2 = new Sphere(Vector3(2.0, 5.0, 1.0), 0.1);
+	light2->setName("light2");
 	light2->setLight(true);
 	light2->getMaterial().setColor(Color(0.7, 0.7, 0.9));
 	std::unique_ptr<Primitive> plight2(light2);
