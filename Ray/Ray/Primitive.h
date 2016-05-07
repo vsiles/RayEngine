@@ -19,7 +19,7 @@ public:
 		PLANE
 	};
 	*/
-	const Material& getMaterial(void) const;
+	Material& getMaterial(void) const;
 	void setMaterial(const Material& mat);
 
 	//virtual int GetType() = 0;
