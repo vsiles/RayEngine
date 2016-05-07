@@ -10,7 +10,7 @@ Primitive::~Primitive()
 {
 }
 
-Material& Primitive::getMaterial(void) const
+Material& Primitive::getMaterial(void)
 {
 	return material;
 }
