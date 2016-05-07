@@ -25,8 +25,9 @@ double PlanePrim::getD(void) const
 	return rawPlane.D();
 }
 
-Vector3 PlanePrim::getNormal(void) const
+Vector3 PlanePrim::getNormal(Vector3 &pos) const
 {
+	(void)pos;
 	return rawPlane.N();
 }
 
