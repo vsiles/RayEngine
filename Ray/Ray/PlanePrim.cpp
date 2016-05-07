@@ -32,10 +32,10 @@ Vector3 PlanePrim::getNormal(void) const
 
 hitStatus PlanePrim::Intersect(const Ray &ray, double &dist)
 {
-	double d = rawPlane.N * ray.getDirection();
+	double d = rawPlane.N() * ray.getDirection();
 	if (abs(d) > epsilon)
 	{
-		double tempdist = -((rawPlane.N * ray.getOrigin()) + rawPlane.D()) / d;
+		double tempdist = -((rawPlane.N() * ray.getOrigin()) + rawPlane.D()) / d;
 		if (tempdist > 0)
 		{
 			if (tempdist < dist)

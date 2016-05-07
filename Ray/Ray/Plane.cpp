@@ -1,6 +1,6 @@
 #include "Plane.h"
 
-Plane::Plane(double a = 0.0, double b = 0.0, double c = 0.0, double d = 0.0)
+Plane::Plane(double a, double b, double c, double d)
 {
 	this->a = a;
 	this->b = b;

@@ -19,7 +19,7 @@ public:
 	void B(double b);
 	void C(double c);
 	void D(double d);
-	void N(const Vector3 &n);)
+	void N(const Vector3 &n);
 
 protected:
 	double a;
