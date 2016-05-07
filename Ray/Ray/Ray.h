@@ -8,11 +8,11 @@ public:
 	Ray(Vector3 origin, Vector3 direction);
 	virtual ~Ray();
 
-	const Vector3 &Origin(void) const;
-	const Vector3 &Direction(void) const;
+	const Vector3 &getOrigin(void) const;
+	const Vector3 &getDirection(void) const;
 
-	void Origin(Vector3 &origin);
-	void Direction(Vector3 &direction);
+	void setOrigin(Vector3 &origin);
+	void setDirection(Vector3 &direction);
 
 protected:
 	Vector3 origin;

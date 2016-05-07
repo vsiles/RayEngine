@@ -18,22 +18,22 @@ Ray::~Ray()
 }
 
 
-const Vector3& Ray::Origin(void) const
+const Vector3& Ray::getOrigin(void) const
 {
 	return origin;
 }
 
-const Vector3& Ray::Direction(void) const
+const Vector3& Ray::getDirection(void) const
 {
 	return direction;
 }
 
-void Ray::Origin(Vector3 &origin)
+void Ray::setOrigin(Vector3 &origin)
 {
 	this->origin = origin;
 }
 
-void Ray::Direction(Vector3 &direction)
+void Ray::setDirection(Vector3 &direction)
 {
 	this->direction = direction;
 }

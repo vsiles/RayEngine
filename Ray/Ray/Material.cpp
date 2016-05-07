@@ -2,10 +2,10 @@
 
 
 
-Material::Material() : color()
+Material::Material() : color(0.2, 0.2, 0.2)
 {
 	refl = 0.0;
-	diff = 0.0;
+	diff = 0.2;
 }
 
 
