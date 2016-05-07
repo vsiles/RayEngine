@@ -9,7 +9,7 @@ public:
 	virtual ~Sphere();
 
 	hitStatus Intersect(const Ray &ray, double &dist);
-	Vector3 getNormal(const Vector3 &pos);
+	Vector3 getNormal(const Vector3 &pos) const;
 
 	const Vector3& getCenter(void) const;
 	void setCenter(const Vector3 &center);

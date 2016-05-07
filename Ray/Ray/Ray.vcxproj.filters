@@ -45,6 +45,9 @@
     <ClInclude Include="PlanePrim.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +72,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="PlanePrim.cpp">
+      <Filter>Fichiers sources\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

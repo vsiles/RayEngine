@@ -60,7 +60,7 @@ hitStatus Sphere::Intersect(const Ray &ray, double &dist)
 	return retval;
 }
 
-Vector3 Sphere::getNormal(const Vector3 &pos)
+Vector3 Sphere::getNormal(const Vector3 &pos) const
 {
 	return (pos - center) * revRadius;
 }

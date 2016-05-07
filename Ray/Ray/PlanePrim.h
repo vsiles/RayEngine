@@ -16,7 +16,7 @@ public:
 	virtual ~PlanePrim();
 
 	double getD(void) const;
-	Vector3 getNormal(Vector3 &pos) const;
+	Vector3 getNormal(const Vector3 &pos) const;
 
 
 	hitStatus Intersect(const Ray &ray, double &dist);

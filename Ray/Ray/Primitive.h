@@ -25,7 +25,7 @@ public:
 	//virtual int GetType() = 0;
 
 	virtual hitStatus Intersect(const Ray &ray, double &dist) = 0;
-	virtual Vector3 getNormal(Vector3 &pos) const = 0;
+	virtual Vector3 getNormal(const Vector3 &pos) const = 0;
 	virtual Color getColor(void) const;
 	virtual void setLight(bool light);
 	bool isLight(void) const;
