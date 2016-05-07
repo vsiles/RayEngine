@@ -43,6 +43,11 @@ double Plane::D(void) const
 	return d;
 }
 
+Vector3 Plane::N(void) const
+{
+	return Vector3(a, b, c);
+}
+
 void Plane::A(double a)
 {
 	this->a = a;
@@ -61,4 +66,11 @@ void Plane::C(double c)
 void Plane::D(double d)
 {
 	this->d = d;
+}
+
+void Plane::N(const Vector3 &n)
+{
+	a = n.X();
+	b = n.Y();
+	c = n.Z();
 }

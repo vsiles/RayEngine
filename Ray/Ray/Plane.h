@@ -13,11 +13,13 @@ public:
 	double B(void) const;
 	double C(void) const;
 	double D(void) const;
+	Vector3 N(void) const;
 
 	void A(double a);
 	void B(double b);
 	void C(double c);
 	void D(double d);
+	void N(const Vector3 &n);)
 
 protected:
 	double a;

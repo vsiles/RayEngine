@@ -118,6 +118,7 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="PlanePrim.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Sphere.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PlanePrim.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Sphere.cpp" />
