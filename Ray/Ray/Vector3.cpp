@@ -79,6 +79,11 @@ Vector3 Vector3::scale(double scalar) const
 	return Vector3(x * scalar, y * scalar, z * scalar);
 }
 
+Vector3 Vector3::operator*(double scalar) const
+{
+	return Vector3(x * scalar, y * scalar, z * scalar);
+}
+
 void Vector3::operator*=(double scalar)
 {
 	x *= scalar;

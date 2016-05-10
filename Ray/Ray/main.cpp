@@ -8,13 +8,11 @@ static Scene scene;
 
 static void dummy(std::vector<std::unique_ptr<Primitive>> &prims, size_t n)
 {
-	unique_ptr<Primitive> curr;
 	unsigned int i;
 
 	for (i = 0; i < n; i++) {
-		curr = std::move(scene.getPrimitive(i));
-		cout << "Current primitive is " << curr->getName() << endl;
-		prims[i] = std::move(curr);
+		Primitive &curr = *scene.getPrimitive(i);
+		cout << "Current primitive is " << curr.getName() << endl;
 	}
 }
 
@@ -27,10 +25,6 @@ int main(int argc, char **argv)
 	cout << "HelloWorld !" << endl;
 	
 	scene.initScene();
-
-	dummy(scene.primitives, scene.getPrimitivesNumber());
-
-	dummy(scene.primitives, scene.getPrimitivesNumber());
 
 	cout << "Good Bye World !" << endl;
 

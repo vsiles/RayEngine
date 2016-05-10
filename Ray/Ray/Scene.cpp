@@ -64,7 +64,7 @@ void Scene::initScene()
 
 
 // returns the number of primitives in the scene
-size_t Scene::getPrimitivesNumber()
+size_t Scene::getPrimitivesNumber() const
 {
 	return primitives.size();
 }
@@ -74,4 +74,10 @@ size_t Scene::getPrimitivesNumber()
 std::unique_ptr<Primitive> &Scene::getPrimitive(unsigned int idx)
 {
 	return primitives.at(idx);
+}
+
+// Gives acces to the primitives vector (typically to iterate on it)
+primitives &Scene::getPrimitives(void)
+{
+	return primitives;
 }

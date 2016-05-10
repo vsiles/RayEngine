@@ -26,6 +26,7 @@ public:
 
 	// Multiplication by a scalar
 	Vector3 scale(double scalar) const;
+	Vector3 operator*(double scalar) const;
 	void operator*=(double scalar);
 
 	// Accessor
