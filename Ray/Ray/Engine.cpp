@@ -113,6 +113,50 @@ void Engine::initRender(void)
 
 bool Engine::render(void)
 {
-	// TODO
-	return false;
+	// render scene
+	Vector3 o(0.0, 0.0, -5.0);
+
+	// initialize timer
+	// TODO portable way to get time or at least a define
+	// int msecs = GetTickCount();
+
+	// reset last found primitive pointer
+	Primitive* lastprim = nullptr;
+
+	// render remaining lines
+	for (unsigned int y = currLine; y < (height - 20); y++)
+	{
+		SX = WX1;
+		// render pixels for current line
+		for (unsigned int x = 0; x < width; x++)
+		{
+			// fire primary ray
+			Color acc(0.0, 0.0, 0.0);
+			Vector3 dir = Vector3(SX, SY, 0) - o;
+			dir.normalize();
+			Ray r(o, dir);
+			double dist;
+			Primitive* prim = raytrace(r, acc, 1, 1.0f, dist);
+			int red = (int)(acc.R() * 256);
+			int green = (int)(acc.G() * 256);
+			int blue = (int)(acc.B() * 256);
+			if (red > 255) red = 255;
+			if (green > 255) green = 255;
+			if (blue > 255) blue = 255;
+			dest[ppos++] = (red << 16) + (green << 8) + blue;
+			SX += DX;
+		}
+		SY += DY;
+		
+		// see if we've been working to long already
+		// TODO
+		//if ((GetTickCount() - msecs) > 100)
+		//{
+		//	// return control to windows so the screen gets updated
+		//	m_CurrLine = y + 1;
+		//	return false;
+		//}
+	}
+	// all done
+	return true;
 }
