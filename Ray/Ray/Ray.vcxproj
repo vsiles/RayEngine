@@ -125,6 +125,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Surface.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Surface.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>

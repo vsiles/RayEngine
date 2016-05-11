@@ -54,6 +54,9 @@
     <ClInclude Include="common.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,9 @@
       <Filter>Fichiers sources\math</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
