@@ -1,42 +1,45 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Scene.h"
+
+#include "Engine.h"
+#include "Surface.h"
 
 using namespace std;
 
-static Scene scene;
+Surface *surface = nullptr;
+Pixel *buffer = nullptr;
+Engine *tracer = nullptr;
 
-static void dummy(std::vector<std::unique_ptr<Primitive>> &prims, size_t n)
-{
-	unsigned int i;
+#define SCRWIDTH 800
+#define SCRHEIGHT 600
 
-	for (i = 0; i < n; i++) {
-		Primitive &curr = *scene.getPrimitive(i);
-		cout << "Current primitive is " << curr.getName() << endl;
-	}
-}
-
-#if 1
-int main(int argc, char **argv)
-{
-	(void)argc; /* UNUSED */
-	(void)argv; /* UNUSED */
-
-	cout << "HelloWorld !" << endl;
-	
-	scene.initScene();
-
-	cout << "Good Bye World !" << endl;
-
-	return 0;
-}
-#else
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	surface = new Surface(SCRWIDTH, SCRHEIGHT);
+	buffer = surface->getBuffer();
+	surface->clear(0);
+	surface->initCharset();
+	surface->print("timings:", 2, 2, 0xffffffff);
 
+	tracer = new Engine();
+	tracer->getScene().initScene();
+	tracer->setTarget(surface->getBuffer(), SCRWIDTH, SCRHEIGHT);
+	int tpos = 60;
+
+	tracer->initRender();
+	tracer->render();
+
+	// image -> texture -> sprite
+	sf::Image image;
+	image.create(SCRWIDTH, SCRHEIGHT, (sf::Uint8 *)buffer);
+
+	sf::Texture tex;
+	tex.loadFromImage(image);
+	sf::Sprite sprite;
+	sprite.setTexture(tex, true);
+	
+	sf::RenderWindow window(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "SFML works!");
+	
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -47,10 +50,9 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		window.draw(sprite);
 		window.display();
 	}
 
 	return 0;
 }
-#endif

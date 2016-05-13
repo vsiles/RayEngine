@@ -10,7 +10,7 @@ public:
 	virtual ~Engine();
 
 	void setTarget(Pixel* dest, unsigned int width, unsigned int height);
-	const Scene &getScene(void) const;
+	Scene &getScene(void);
 	Primitive *raytrace(const Ray &ray, Color &acc, unsigned int depth, double rIndex, double &dist);
 	void initRender(void);
 	bool render(void);

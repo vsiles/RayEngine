@@ -8,8 +8,6 @@
 #include <locale>
 #include "Surface.h"
 
-
-
 Surface::Surface(unsigned int width, unsigned int height)
 {
 	this->width = width;
@@ -120,4 +118,19 @@ void Surface::initCharset()
 		transl[i] = 45;
 	for (i = 0; i < 50; i++)
 		transl[c[i]] = i;
+}
+
+Pixel *Surface::getBuffer()
+{
+	return buffer;
+}
+
+unsigned int Surface::getWidth()
+{
+	return width;
+}
+
+unsigned int Surface::getHeight()
+{
+	return height;
 }

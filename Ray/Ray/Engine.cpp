@@ -21,7 +21,7 @@ void Engine::setTarget(Pixel *dest, unsigned int width, unsigned int height)
 	this->height = height;
 }
 
-const Scene &Engine::getScene(void) const
+Scene &Engine::getScene(void)
 {
 	return scene;
 }
