@@ -115,6 +115,9 @@ void Engine::initRender(void)
 
 bool Engine::render(void)
 {
+	std::ofstream debugfile;
+	debugfile.open("E:\\code\\debug2.txt", std::ios_base::app);
+	debugfile << "Starting currLine = " << currLine << std::endl;
 	// render scene
 	Vector3 o(0.0, 0.0, -5.0);
 
@@ -124,10 +127,6 @@ bool Engine::render(void)
 	// reset last found primitive pointer
 	Primitive *lastprim = nullptr;
 
-	std::ofstream debugfile;
-	debugfile.open("E:\\code\\debug2.txt");
-
-	unsigned int output = 10;
 	// render remaining lines
 	for (unsigned int y = currLine; y < (height - 20); y++)
 	{
@@ -141,27 +140,22 @@ bool Engine::render(void)
 			dir.normalize();
 			Ray r(o, dir);
 			double dist;
-			Primitive *prim = raytrace(r, acc, 1, 1.0f, dist);
+			unsigned int prev = get_msec();
+			Primitive *prim = raytrace(r, acc, 1, 1.0, dist);
+			unsigned int post = get_msec();
+			if (post - prev != 0) {
+				if (prim)
+					debugfile << prim->getName() << " @ ";
+				debugfile << x << ", " << y << ": ";
+				debugfile << post - prev << std::endl;
+			}
 			int red = (int)(acc.R() * 256);
 			int green = (int)(acc.G() * 256);
 			int blue = (int)(acc.B() * 256);
 			if (red > 255) red = 255;
 			if (green > 255) green = 255;
 			if (blue > 255) blue = 255;
-			if (output > 0) {
-				debugfile << "Debug " << output << std::endl;
-				debugfile << ((prim == nullptr) ? "null" : prim->getName()) << std::endl;
-				debugfile << dist << std::endl;
-				debugfile << red << std::endl;
-				debugfile << green << std::endl;
-				debugfile << blue << std::endl << std::endl;
-				output--;
-			}
-			dest[ppos][0] = red;
-			dest[ppos][1] = green;
-			dest[ppos][2] = blue;
-			dest[ppos][3] = 255; /* alpha */
-			ppos++;
+			dest[ppos++] = RGBA_to_Pixel(red, green, blue);
 			SX += DX;
 		}
 		SY += DY;
@@ -170,13 +164,15 @@ bool Engine::render(void)
 		// TODO
 		if ((get_msec() - msecs) > 100)
 		{
-			debugfile.close();
 			// return control to windows so the screen gets updated
 			currLine = y + 1;
+			debugfile << "exiting currLine = " << currLine << std::endl;
+			debugfile.close();
 			return false;
 		}
 	}
-	debugfile.close();
+
 	// all done
+	debugfile.close();
 	return true;
 }

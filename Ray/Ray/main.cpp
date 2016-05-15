@@ -26,8 +26,9 @@ Engine *tracer = nullptr;
 
 int main()
 {
-	Pixel white = { 255, 255, 255, 255 };
-	Pixel black = { 0, 0, 0, 255 };
+	Pixel white = (Pixel)0xffffffff;
+	Pixel black = (Pixel)0xff000000;
+
 	surface = new Surface(SCRWIDTH, SCRHEIGHT);
 	buffer = surface->getBuffer();
 	surface->clear(black);

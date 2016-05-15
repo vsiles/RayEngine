@@ -14,6 +14,7 @@ public:
 	Primitive *raytrace(const Ray &ray, Color &acc, unsigned int depth, double rIndex, double &dist);
 	void initRender(void);
 	bool render(void);
+
 protected:
 	double  WX1, WY1, WX2, WY2, DX, DY, SX, SY;
 	Scene scene;

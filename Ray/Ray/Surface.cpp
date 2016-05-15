@@ -25,10 +25,7 @@ void Surface::clear(Pixel color)
 {
 	int s = width * height;
 	for (int i = 0; i < s; i++) {
-		buffer[i][0] = color[0];
-		buffer[i][1] = color[1];
-		buffer[i][2] = color[2];
-		buffer[i][3] = color[3];
+		buffer[i] = color;
 	}
 }
 
@@ -50,10 +47,7 @@ void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel col
 		{
 			for (h = 0; h < 5; h++)
 				if (*c++ == 'o') {
-					(*(a + h))[0] = color[0];
-					(*(a + h))[1] = color[1];
-					(*(a + h))[2] = color[2];
-					(*(a + h))[3] = color[3];
+					*(a + h) = color;
 				}
 			a += width;
 		}
