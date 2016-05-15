@@ -4,6 +4,15 @@
 #include "Engine.h"
 #include "Surface.h"
 
+#ifdef LINUX
+#error "Need to implement get_msec for Linux"
+#else
+#include <windows.h>
+unsigned int get_msec(void) {
+	return (unsigned int)GetTickCount();
+}
+#endif
+
 using namespace std;
 
 Surface *surface = nullptr;
@@ -13,32 +22,57 @@ Engine *tracer = nullptr;
 #define SCRWIDTH 800
 #define SCRHEIGHT 600
 
+
+
 int main()
 {
+	Pixel white = { 255, 255, 255, 255 };
+	Pixel black = { 0, 0, 0, 255 };
 	surface = new Surface(SCRWIDTH, SCRHEIGHT);
 	buffer = surface->getBuffer();
-	surface->clear(0);
+	surface->clear(black);
 	surface->initCharset();
-	surface->print("timings:", 2, 2, 0xffffffff);
+	surface->print("timings:", 2, 2, white);
 
 	tracer = new Engine();
 	tracer->getScene().initScene();
 	tracer->setTarget(surface->getBuffer(), SCRWIDTH, SCRHEIGHT);
 	int tpos = 60;
 
-	tracer->initRender();
-	tracer->render();
-
+	
 	// image -> texture -> sprite
 	sf::Image image;
-	image.create(SCRWIDTH, SCRHEIGHT, (sf::Uint8 *)buffer);
-
 	sf::Texture tex;
-	tex.loadFromImage(image);
 	sf::Sprite sprite;
-	sprite.setTexture(tex, true);
 	
 	sf::RenderWindow window(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "SFML works!");
+
+	tracer->initRender();
+
+	int fstart = get_msec();
+
+	while (!tracer->render())
+		std::cout << "Tracing ... " << std::endl;
+	
+	int ftime = get_msec() - fstart;
+	/* TODO time to string*/
+	char t[] = "00:00.000";
+	t[6] = (ftime / 100) % 10 + '0';
+	t[7] = (ftime / 10) % 10 + '0';
+	t[8] = (ftime % 10) + '0';
+	int secs = (ftime / 1000) % 60;
+	int mins = (ftime / 60000) % 100;
+	t[3] = ((secs / 10) % 10) + '0';
+	t[4] = (secs % 10) + '0';
+	t[1] = (mins % 10) + '0';
+	t[0] = ((mins / 10) % 10) + '0';
+	surface->print(t, tpos, 2, white);
+	tpos += 100;
+	std::cout << "Tracing done ! " << std::endl;
+
+	image.create(SCRWIDTH, SCRHEIGHT, (sf::Uint8 *)buffer);
+	tex.loadFromImage(image);
+	sprite.setTexture(tex, true);
 	
 	while (window.isOpen())
 	{

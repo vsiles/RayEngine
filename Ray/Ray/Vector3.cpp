@@ -54,7 +54,7 @@ void Vector3::operator-=(const Vector3 &other)
 // Scalar product
 double Vector3::operator*(const Vector3 &other) const
 {
-	return (this->x * other.x, this->y * other.y, this->z * other.z);
+	return this->x * other.x + this->y * other.y + this->z * other.z;
 }
 
 // Cross product

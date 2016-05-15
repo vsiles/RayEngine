@@ -24,8 +24,12 @@ Surface::~Surface()
 void Surface::clear(Pixel color)
 {
 	int s = width * height;
-	for (int i = 0; i < s; i++)
-		buffer[i] = color;
+	for (int i = 0; i < s; i++) {
+		buffer[i][0] = color[0];
+		buffer[i][1] = color[1];
+		buffer[i][2] = color[2];
+		buffer[i][3] = color[3];
+	}
 }
 
 void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel color)
@@ -37,14 +41,20 @@ void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel col
 		int pos = 0;
 		if (isalpha(str[i]))
 			pos = transl[tolower(str[i])];
+		else
+			pos = transl[str[i]];
 		Pixel *a = t;
 		char *c = (char *)font[pos];
 		unsigned int h, v;
 		for (v = 0; v < 5; v++)
 		{
 			for (h = 0; h < 5; h++)
-				if (*c++ == 'o') 
-					*(a + h) = color;
+				if (*c++ == 'o') {
+					(*(a + h))[0] = color[0];
+					(*(a + h))[1] = color[1];
+					(*(a + h))[2] = color[2];
+					(*(a + h))[3] = color[3];
+				}
 			a += width;
 		}
 		t += 6;
@@ -53,11 +63,11 @@ void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel col
 
 void Surface::setChar(int c, char *c1, char *c2, char *c3, char *c4, char *c5)
 {
-	strcpy_s(font[c][0], 5, c1);
-	strcpy_s(font[c][1], 5, c2);
-	strcpy_s(font[c][2], 5, c3);
-	strcpy_s(font[c][3], 5, c4);
-	strcpy_s(font[c][4], 5, c5);
+	memcpy(font[c][0], c1, 5 * sizeof(char));
+	memcpy(font[c][1], c2, 5 * sizeof(char));
+	memcpy(font[c][2], c3, 5 * sizeof(char));
+	memcpy(font[c][3], c4, 5 * sizeof(char));
+	memcpy(font[c][4], c5, 5 * sizeof(char));
 }
 
 void Surface::initCharset()
