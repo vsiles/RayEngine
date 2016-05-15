@@ -29,8 +29,8 @@ Sphere::~Sphere()
 hitStatus Sphere::Intersect(const Ray &ray, double &dist)
 {
 	Vector3 v = ray.getOrigin() - center;
-	double b = -(v * ray.getDirection());
-	double det = (b * b) - (v * v) + sqrRadius;
+	double b = -(v.dot(ray.getDirection()));
+	double det = (b * b) - v.dot(v) + sqrRadius;
 	hitStatus retval = MISS;
 	if (det > 0)
 	{

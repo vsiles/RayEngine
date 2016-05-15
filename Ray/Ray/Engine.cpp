@@ -69,7 +69,7 @@ Primitive *Engine::raytrace(const Ray &ray, Color &acc, unsigned int depth, doub
 		{
 			if ((*l)->isLight())
 			{
-				Primitive* light = l->get();
+				Primitive *light = l->get();
 
 				// calculate diffuse shading
 				Vector3 L = ((Sphere *)light)->getCenter() - pi;
@@ -77,7 +77,7 @@ Primitive *Engine::raytrace(const Ray &ray, Color &acc, unsigned int depth, doub
 				Vector3 N = prim->getNormal(pi);
 				if (prim->getMaterial().getDiffuse() > 0)
 				{
-					double dot = N * L;
+					double dot = N.dot(L);
 					if (dot > 0)
 					{
 						double diff = dot * prim->getMaterial().getDiffuse();

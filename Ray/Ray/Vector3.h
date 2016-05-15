@@ -10,24 +10,35 @@ public:
 	virtual ~Vector3();
 
 	// Addition of Vector3 field by field
-	Vector3 operator+(const Vector3 &other) const;
+	friend Vector3 operator+(const Vector3 v1, const Vector3 &v2) {
+		return Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+	}
 	void operator+=(const Vector3 &other);
 
 	// Subtraction of Vector3 field by field
-	Vector3 operator-(const Vector3 &other) const;
+	friend Vector3 operator-(const Vector3 v1, const Vector3 &v2) {
+		return Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+	}
 	void operator-=(const Vector3 &other);
 
 	// Scalar product
-	double operator*(const Vector3 &other) const;
+	double dot(const Vector3 &other) const;
 
 	// Cross product
-	Vector3 operator^(const Vector3 &other) const;
-	void operator^(const Vector3 &other);
+	friend Vector3 operator^(const Vector3 &v1, const Vector3 &v2) {
+		Vector3(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
+	}
+	void operator^=(const Vector3 &other);
 
 	// Multiplication by a scalar
-	Vector3 scale(double scalar) const;
-	Vector3 operator*(double scalar) const;
+	friend Vector3 operator*(const Vector3 &v, double scalar);
+	friend Vector3 operator*(double scalar, const Vector3 &v);
+	void operator*=(const Vector3 &v);
+	friend Vector3 operator*(const Vector3 &v1, const Vector3 &v2);
 	void operator*=(double scalar);
+
+	// unary opp
+	Vector3 operator- () const;
 
 	// Accessor
 	double X(void) const;

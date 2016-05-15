@@ -51,8 +51,7 @@ int main()
 
 	int fstart = get_msec();
 
-	while (!tracer->render())
-		std::cout << "Tracing ... " << std::endl;
+	while (!tracer->render()) {}
 	
 	int ftime = get_msec() - fstart;
 	/* TODO time to string*/
@@ -68,7 +67,6 @@ int main()
 	t[0] = ((mins / 10) % 10) + '0';
 	surface->print(t, tpos, 2, white);
 	tpos += 100;
-	std::cout << "Tracing done ! " << std::endl;
 
 	image.create(SCRWIDTH, SCRHEIGHT, (sf::Uint8 *)buffer);
 	tex.loadFromImage(image);

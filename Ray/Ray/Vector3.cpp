@@ -23,24 +23,11 @@ Vector3::~Vector3()
 }
 
 
-// Addition of Vector3 field by field
-Vector3 Vector3::operator+(const Vector3 & other) const
-{
-	return Vector3(this->x + other.x, this->y + other.y, this->z + other.z);
-}
-
 void Vector3::operator+=(const Vector3 &other)
 {
 	x += other.x;
 	y += other.y;
 	z += other.z;
-}
-
-
-// Subtraction of Vector3 field by field
-Vector3 Vector3::operator-(const Vector3 &other) const
-{
-	return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
 }
 
 void Vector3::operator-=(const Vector3 &other)
@@ -52,36 +39,41 @@ void Vector3::operator-=(const Vector3 &other)
 
 
 // Scalar product
-double Vector3::operator*(const Vector3 &other) const
+double Vector3::dot(const Vector3 &other) const
 {
-	return this->x * other.x + this->y * other.y + this->z * other.z;
+	return (this->x * other.x) + (this->y * other.y) + (this->z * other.z);
 }
 
 // Cross product
-Vector3 Vector3::operator^(const Vector3 &other) const
+void Vector3::operator^=(const Vector3 &other)
 {
-	return Vector3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
-}
-
-void Vector3::operator^(const Vector3 &other)
-{
-	Vector3 ref(x, y, z);
-
-	x = ref.y * other.z - ref.z * other.y;
-	y = ref.z * other.x - ref.x * other.z;
-	z = ref.x * other.y - ref.y * other.x;
+	x = this->y * other.z - this->z * other.y;
+	y = this->z * other.x - this->x * other.z;
+	z = this->x * other.y - this->y * other.x;
 }
 
 
 // Multiplication by a scalar
-Vector3 Vector3::scale(double scalar) const
+Vector3 operator*(const Vector3 &v, double scalar)
 {
-	return Vector3(x * scalar, y * scalar, z * scalar);
+	return Vector3(v.x * scalar, v.y *scalar, v.z*scalar);
 }
 
-Vector3 Vector3::operator*(double scalar) const
+void Vector3::operator*=(const Vector3 &v)
 {
-	return Vector3(x * scalar, y * scalar, z * scalar);
+	x *= v.x;
+	y *= v.y;
+	z *= v.z;
+}
+
+Vector3 operator*(double scalar, const Vector3 &v)
+{
+	return Vector3(v.x * scalar, v.y *scalar, v.z*scalar);
+}
+
+Vector3 operator*(const Vector3 &v1, const Vector3 &v2)
+{
+	return Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
 }
 
 void Vector3::operator*=(double scalar)
@@ -91,6 +83,10 @@ void Vector3::operator*=(double scalar)
 	z *= scalar;
 }
 
+Vector3 Vector3::operator-() const
+{
+	return Vector3(-x, -y, -z);
+}
 
 // 'Simple function to 'cout' a Vector3
 std::ostream &operator<<(std::ostream &os, Vector3 const &m) {
