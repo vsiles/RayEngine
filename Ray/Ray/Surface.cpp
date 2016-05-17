@@ -6,6 +6,7 @@
 //     2016 - Vincent Siles - vincent.siles@gmail.com
 // ----------------------------------------------------------------
 #include <locale>
+#include <cstring>
 #include "Surface.h"
 
 Surface::Surface(unsigned int width, unsigned int height)
@@ -40,9 +41,9 @@ void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel col
 	{
 		int pos = 0;
 		if (isalpha(str[i]))
-			pos = transl[tolower(str[i])];
+			pos = transl[(int)tolower(str[i])];
 		else
-			pos = transl[str[i]];
+			pos = transl[(int)str[i]];
 		Pixel *a = t;
 		char *c = (char *)font[pos];
 		unsigned int h, v;
@@ -61,7 +62,8 @@ void Surface::print(std::string str, unsigned int x1, unsigned int y1, Pixel col
 	}
 }
 
-void Surface::setChar(int c, char *c1, char *c2, char *c3, char *c4, char *c5)
+void Surface::setChar(int c, const char *c1, const char *c2, const char *c3,
+        const char *c4, const char *c5)
 {
 	memcpy(font[c][0], c1, 5 * sizeof(char));
 	memcpy(font[c][1], c2, 5 * sizeof(char));
@@ -127,7 +129,7 @@ void Surface::initCharset()
 	for (i = 0; i < 256; i++)
 		transl[i] = 45;
 	for (i = 0; i < 50; i++)
-		transl[c[i]] = i;
+		transl[(int)c[i]] = i;
 }
 
 Pixel *Surface::getBuffer()

@@ -10,15 +10,15 @@ public:
 	Material();
 	virtual ~Material();
 
-	void setColor(Color& color);
+	void setColor(const Color& color);
 	Color getColor(void) const;
 	void setDiffuse(double diffuse);
 	double getDiffuse(void) const;
-	
+
 	void setReflection(double refl);
 	double GetReflection(void) const;
 	double getSpecular(void) const;
-	
+
 protected:
 	Color color;
 	double refl;
