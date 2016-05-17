@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <cstring>
 #include "Engine.h"
 #include "Sphere.h"
 
@@ -36,7 +37,7 @@ Primitive *Engine::raytrace(const Ray &ray, Color &acc, unsigned int depth, doub
 	Vector3 pi;
 	primitives &primitives = scene.getPrimitives();
 	Primitive *prim = nullptr;
-	
+
 	hitStatus result = MISS;
 
 	// find the nearest intersection

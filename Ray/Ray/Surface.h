@@ -24,7 +24,8 @@ public:
 
 	// Special operations
 	void initCharset();
-	void print(std::string str, unsigned int x1, unsigned int y1, Pixel color);
+	void print(std::string str, unsigned int x1, unsigned int y1,
+                Pixel color);
 	void clear(Pixel color);
 
 private:
@@ -36,6 +37,7 @@ private:
 	char font[51][5][5];
 	int transl[256];
 
-	void setChar(int c, char *c1, char *c2, char *c3, char *c4, char *c5);
+	void setChar(int c, const char *c1, const char *c2, const char *c3,
+                const char *c4, const char *c5);
 };
 

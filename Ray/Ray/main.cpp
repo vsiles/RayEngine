@@ -5,7 +5,18 @@
 #include "Surface.h"
 
 #ifdef LINUX
-#error "Need to implement get_msec for Linux"
+#include <time.h>
+#include <math.h>
+unsigned int get_msec(void) {
+    struct timespec spec;
+    unsigned int ms;
+    time_t s;
+    clock_gettime(CLOCK_REALTIME, &spec);
+    s = spec.tv_sec;
+    ms = round(spec.tv_nsec / 1.0e6);
+    ms += s*1000;
+    return ms;
+}
 #else
 #include <windows.h>
 unsigned int get_msec(void) {
@@ -21,8 +32,6 @@ Engine *tracer = nullptr;
 
 #define SCRWIDTH 800
 #define SCRHEIGHT 600
-
-
 
 int main()
 {
@@ -40,12 +49,11 @@ int main()
 	tracer->setTarget(surface->getBuffer(), SCRWIDTH, SCRHEIGHT);
 	int tpos = 60;
 
-	
 	// image -> texture -> sprite
 	sf::Image image;
 	sf::Texture tex;
 	sf::Sprite sprite;
-	
+
 	sf::RenderWindow window(sf::VideoMode(SCRWIDTH, SCRHEIGHT), "SFML works!");
 
 	tracer->initRender();
@@ -53,7 +61,7 @@ int main()
 	int fstart = get_msec();
 
 	while (!tracer->render()) {}
-	
+
 	int ftime = get_msec() - fstart;
 	/* TODO time to string*/
 	char t[] = "00:00.000";
@@ -72,7 +80,7 @@ int main()
 	image.create(SCRWIDTH, SCRHEIGHT, (sf::Uint8 *)buffer);
 	tex.loadFromImage(image);
 	sprite.setTexture(tex, true);
-	
+
 	while (window.isOpen())
 	{
 		sf::Event event;

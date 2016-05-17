@@ -13,7 +13,7 @@ Material::~Material()
 {
 }
 
-void Material::setColor(Color& color)
+void Material::setColor(const Color& color)
 {
 	this->color = color;
 }

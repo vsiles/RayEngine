@@ -22,5 +22,5 @@ public:
 	primitives &getPrimitives(void);
 
 protected:
-	primitives primitives;
+	primitives prims;
 };
