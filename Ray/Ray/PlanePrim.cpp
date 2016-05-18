@@ -1,3 +1,4 @@
+#include <cmath>
 #include "PlanePrim.h"
 
 PlanePrim::PlanePrim() : rawPlane()
@@ -34,7 +35,7 @@ Vector3 PlanePrim::getNormal(const Vector3 &pos) const
 hitStatus PlanePrim::Intersect(const Ray &ray, double &dist)
 {
 	double d = rawPlane.N().dot(ray.getDirection());
-	if (abs(d) > epsilon)
+	if (fabs(d) > epsilon)
 	{
 		double tempdist = -((rawPlane.N().dot(ray.getOrigin())) + rawPlane.D()) / d;
 		if (tempdist > 0)
